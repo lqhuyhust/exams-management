@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('prize_records', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('exam_id')->nullable(false);
+            $table->id();
+            $table->unsignedBigInteger('exam_id')->nullable(false);
             $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
-            $table->uuid('prize_id')->nullable(false);
+            $table->unsignedBigInteger('prize_id')->nullable(false);
             $table->foreign('prize_id')->references('id')->on('prizes')->onDelete('cascade');
-            $table->uuid('user_id')->nullable(false);
+            $table->unsignedBigInteger('user_id')->nullable(false);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

@@ -12,11 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('exams', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->string('name')->nullable(false);
             $table->text('description');
-            $table->integer('questions_count')->nullable(false);;
-            $table->text('questions');
+            $table->integer('questions_count')->nullable(false);
             $table->boolean('is_handled')->default(false);
             $table->timestamp('start_time')->nullable(false);
             $table->timestamp('end_time')->nullable(false);

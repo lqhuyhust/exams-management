@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('choices', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('question_id')->nullable(false);
+            $table->id();
+            $table->unsignedBigInteger('question_id')->nullable(false);
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
             $table->string('name')->nullable(false);
             $table->timestamps();

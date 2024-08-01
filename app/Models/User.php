@@ -42,4 +42,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Get all the prize records associated with the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function prizeRecords() 
+    {
+        return $this->hasMany(PrizeRecord::class, 'user_id', 'id');
+    }
+
+
+    /**
+     * Get all the submissions associated with the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function submissions() 
+    {
+        return $this->hasMany(Submission::class, 'user_id', 'id');
+    }
 }
