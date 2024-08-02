@@ -23,7 +23,10 @@ class QuestionResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')
+                    ->label('Name')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
@@ -31,13 +34,16 @@ class QuestionResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->label('Name'),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -49,7 +55,7 @@ class QuestionResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            QuestionResource\RelationManagers\ChoicesRelationManager::class,
         ];
     }
 

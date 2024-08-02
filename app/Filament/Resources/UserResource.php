@@ -30,6 +30,7 @@ class UserResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('email')
                     ->label('Email')
+                    ->email()
                     ->required()
                     ->unique(ignoreRecord: true)
                     ->maxLength(255),
@@ -54,11 +55,14 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->searchable()
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
                     ->label('Name'),
-                Tables\Columns\TextColumn::make('email')->searchable()
+                Tables\Columns\TextColumn::make('email')
+                    ->searchable()
                     ->label('Email'),
-                Tables\Columns\TextColumn::make('created_at')->sortable()
+                Tables\Columns\TextColumn::make('created_at')
+                    ->sortable()
                     ->label('Created At'),
             ])
             ->filters([
