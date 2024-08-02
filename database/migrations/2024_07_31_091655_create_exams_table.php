@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable(false);
-            $table->text('description');
-            $table->integer('questions_count')->nullable(false);
+            $table->string('name');
+            $table->text('description')->nullable(true);
+            $table->integer('questions_count');
             $table->boolean('is_handled')->default(false);
-            $table->timestamp('start_time')->nullable(false);
-            $table->timestamp('end_time')->nullable(false);
+            $table->timestamp('start_time');
+            $table->timestamp('end_time');
             $table->timestamps();
         });
     }

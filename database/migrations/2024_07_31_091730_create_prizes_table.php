@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('prizes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('exam_id')->nullable(false);
+            $table->unsignedBigInteger('exam_id');
             $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
-            $table->string('name')->nullable(false);
-            $table->tinyInteger('piority')->nullable(false);
-            $table->integer('quantity')->nullable(false);
-            $table->integer('amount')->nullable(false);
+            $table->string('name');
+            $table->tinyInteger('piority');
+            $table->integer('quantity');
+            $table->integer('amount');
             $table->timestamps();
         });
     }
