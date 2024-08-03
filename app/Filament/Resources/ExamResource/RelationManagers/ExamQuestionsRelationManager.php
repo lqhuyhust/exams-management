@@ -4,7 +4,7 @@ namespace App\Filament\Resources\ExamResource\RelationManagers;
 
 use App\Models\Question;
 use App\Models\ExamQuestion;
-use App\Services\ExamService;
+use App\Services\ExamQuestionsService;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -48,7 +48,7 @@ class ExamQuestionsRelationManager extends RelationManager
                     ->after(function (ExamQuestion $record): void {
                         try 
                         {
-                            $examService = new ExamService();
+                            $examService = new ExamQuestionsService();
                             $examService->updateExamQuestionStructure($record);
                         } catch (\Exception $e) {
                             throw $e;
@@ -60,7 +60,7 @@ class ExamQuestionsRelationManager extends RelationManager
                     ->after(function (ExamQuestion $record): void {
                         try 
                         {
-                            $examService = new ExamService();
+                            $examService = new ExamQuestionsService();
                             $examService->updateExamQuestionStructure($record);
                         } catch (\Exception $e) {
                             throw $e;
@@ -70,7 +70,7 @@ class ExamQuestionsRelationManager extends RelationManager
                     ->after(function (ExamQuestion $record): void {
                         try 
                         {
-                            $examService = new ExamService();
+                            $examService = new ExamQuestionsService();
                             $examService->updateExamQuestionStructure($record);
                         } catch (\Exception $e) {
                             throw $e;
