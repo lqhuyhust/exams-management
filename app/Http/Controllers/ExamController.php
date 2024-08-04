@@ -46,11 +46,6 @@ class ExamController extends Controller
         // redirect to exam page
     }
 
-    public function verifyRegistration($registrationToken)
-    {
-        // verify registration
-    }
-
     public function enroll(Request $request, $examID)
     {
         // Get query parameter 'token'

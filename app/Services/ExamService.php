@@ -58,11 +58,6 @@ class ExamService
         // send mail to user
     }
 
-    public function verifyRegistration($registrationToken)
-    {
-        // verify registration token from Redis
-    }
-
     public function enroll($examID, $userID, $token)
     {
         // check user have permission to enroll in exam
