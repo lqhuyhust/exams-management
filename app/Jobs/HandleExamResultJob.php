@@ -40,5 +40,8 @@ class HandleExamResultJob implements ShouldQueue
 
         // remove exam from redis
         $this->examService->removeExamFromRedis($this->examID);
+
+        // set exam is completed
+        $this->examService->setExamIsCompleted($this->examID);
     }
 }

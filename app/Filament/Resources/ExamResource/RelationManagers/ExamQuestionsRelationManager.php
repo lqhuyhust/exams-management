@@ -38,7 +38,7 @@ class ExamQuestionsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('question_id')
             ->columns([
-                Tables\Columns\TextColumn::make('question_id'),
+                Tables\Columns\TextColumn::make('question.name')->label('Question'),
             ])
             ->filters([
                 //
@@ -56,6 +56,12 @@ class ExamQuestionsRelationManager extends RelationManager
                     }),
             ])
             ->actions([
+                Tables\Actions\Action::make('Edit Question Choices')
+                    ->action(function (ExamQuestion $record): void {
+                        redirect("/admin/questions/{$record->question_id}/edit");
+                    })
+                    ->icon('heroicon-o-document-text')
+                    ->color('success'),
                 Tables\Actions\EditAction::make()
                     ->after(function (ExamQuestion $record): void {
                         try 

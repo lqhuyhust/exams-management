@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: digitalocean.com/php
+    container_name: exam-app
     restart: unless-stopped
     tty: true
     environment:
@@ -21,6 +22,7 @@ services:
   #Nginx Service
   nginx:
     image: nginx:alpine
+    container_name: exam-nginx
     restart: unless-stopped
     tty: true
     ports:
@@ -34,6 +36,7 @@ services:
 
   db:
     image: mysql:8.0.32
+    container_name: exam-db
     restart: unless-stopped
     ports:
       - "${DB_PORT}:${DB_PORT}"
@@ -49,6 +52,7 @@ services:
 
   redis:
     image: redis:latest
+    container_name: exam-redis
     restart: unless-stopped
     ports:
       - "${REDIS_PORT}:${REDIS_PORT}"

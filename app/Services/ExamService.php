@@ -296,4 +296,11 @@ class ExamService
             HandleExamResultJob::dispatch($examID)->delay($delay);
         }
     }
+
+    public function setExamIsCompleted($examID)
+    {
+        $exam = Exam::find($examID);
+        $exam->is_handled = true;
+        $exam->save();
+    }
 }
