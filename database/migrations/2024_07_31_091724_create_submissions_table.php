@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('submission');
             $table->tinyInteger('status')->default(0);
+            $table->text('score')->nullable(true);
             $table->timestamps();
         });
     }

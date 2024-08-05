@@ -46,7 +46,7 @@ class ExamRegistrationMail extends Mailable implements ShouldQueue
                 'examName' => $this->exam->name,
                 'examStartTime' => $this->exam->start_time,
                 'examEndTime' => $this->exam->end_time,
-                'examURL' => "{env('APP_URL')}/exam/{$this->exam->id}?token={$this->token}",
+                'examURL' => env('APP_URL') . "/exam/{$this->exam->id}?token={$this->token}",
             ],
         );
     }

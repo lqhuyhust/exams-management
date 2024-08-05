@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\SubmissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +16,17 @@ use App\Http\Controllers\ExamController;
 |
 */
 
+// authentication routes
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
+    // exams routes
     Route::get('/', [ExamController::class, 'index'])->name('exams');
-    Route::get('/exams/{id}', [ExamController::class, 'show'])->name('exams.show');
+    Route::get('/exam/{examID}', [ExamController::class, 'show'])->name('exams.show');
+    Route::post('/exam/{examID}/register', [ExamController::class, 'register'])->name('exams.register');
+    Route::post('/exam/{examID}/submit', [ExamController::class, 'submit'])->name('exams.submit');
+    Route::post('/exam/{examID}/store-submission', [ExamController::class, 'storeSubmissionToRedis'])->name('exams.store-submission');
+
 });

@@ -9,6 +9,8 @@ use App\Models\ExamQuestion;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Facades\Redis;
+use App\Services\ExamService;
+use App\Services\ExamQuestionsService;
 
 class CreateExam extends CreateRecord
 {
@@ -55,6 +57,10 @@ class CreateExam extends CreateRecord
 
             // store exam questions structure to redis
             Redis::set("questions_structure_{$createdExam->id}", $questionsStructure);
+
+            // set job time
+            $examService = new ExamService(new ExamQuestionsService());
+            $examService->setHandleExamResultJobTime($createdExam->id, $createdExam->end_time);
             return $createdExam;
         } catch (\Exception $e) {
             throw $e;

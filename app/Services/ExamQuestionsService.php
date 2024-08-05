@@ -25,23 +25,27 @@ class ExamQuestionsService
         foreach ($questions as $question) {
             $choices = [];
             foreach ($question->choices as $choice) {
-                $choices[] = $choice->name;
+                $choices[] = [
+                    'choice_id' => $choice->id, 
+                    'choice_name' => $choice->name, 
+                ];
             }
             $questionsStructure[] = [
+                'question_id' => $question->id,
                 'question' => $question->name,
                 'choices' => $choices
             ];
         }
-
         // store exam questions structure to redis
         $prefix = env('REDIS_PREFIX', 'laravel_database_');
-        Redis::set("{$prefix}questions_structure_{$examID}", $questionsStructure);
+        Redis::set("{$prefix}questions_structure_{$examID}", json_encode($questionsStructure));
     }
 
     public function getExamQuestionsStructure($examID)
     {
         $prefix = env('REDIS_PREFIX', 'laravel_database_');
+
         $questionsStructure = Redis::get("{$prefix}questions_structure_{$examID}");
-        return $questionsStructure ? json_decode($questionsStructure) : [];
+        return $questionsStructure;
     }
 }

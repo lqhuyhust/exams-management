@@ -40,7 +40,7 @@
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-    @if (View::hasSection('script')) @yield('script')@endif
+    @yield('script')
 </body>
 
 </html>
