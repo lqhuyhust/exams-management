@@ -53,13 +53,17 @@ The system consists of three components:
 ```
 docker compose up -d --build 
 ```
-2. Migrate and Seed the Database
+2. Install composer
+```
+docker exec -it exam-app composer install 
+```
+3. Migrate and Seed the Database
 ```
 docker exec -it exam-app php artisan migrate --seed
 ```
 - Default admin account: admin@admin.com/password
 - Default student account: student@email.com/password
-3. Add Keys and Start the Queue:
+4. Add Keys and Start the Queue:
 ```
 docker exec -it exam-app php artisan key:generate
 docker exec -it exam-app php artisan queue:work
